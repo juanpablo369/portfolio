@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+
+<%- include('fragmentos/head'); %> 
+  <body class="profile-page sidebar-collapse" style="background-color: black">
+  <%- include('fragmentos/navbar'); %> 
+  <div class="page-header bg-dark header-filter" data-parallax="true" style="background-image: url('/images/bg2.jpg'); transform: translate3d(0px, 0px, 0px);"></div>
+  <div class="main main-raised">
+    <div class="profile-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
+              <div class="avatar">
+                <img src="./images/avatar-male.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+              </div>
+              <div class="name">
+                <h3 class="title">
+<%= user.name%>
+<%= user.lastname%></h3>
+                <h6><%= user.email%></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="description text-center">
+<b>Id: </b><%= user._id%><br> </p>
+        </div>
+        <div class="row">
+          <div class="col-md-9 ml-auto mr-auto">
+            <div class="profile-tabs">
+              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                    <i class="material-icons">web</i> Muro
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                    <i class="material-icons">supervisor_account</i> Amigos
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                    <i class="material-icons">favorite</i> Reacciones
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                    <i class="material-icons">cloud</i> Shared Cloud
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</body>
+</html>

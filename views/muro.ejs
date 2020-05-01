@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+
+<%- include('fragmentos/head'); %> 
+  <body class="sidebar-collapse" style="background-color: black">
+  <%- include('fragmentos/navbar'); %> 
+  <br>
+  <h3 class="text-white container mr-auto">Mi perfil</h2>
+   <div class="card col-md-6 mx-auto">
+<h4> <b>Usuario</b></h2>
+<%= user.name%>
+<%= user.lastname%><br>
+<%= user._id%><br>
+<h4><b>Email</b></h2>
+<%= user.email %><br>
+</div>
+
+
+<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</body>
+</html>

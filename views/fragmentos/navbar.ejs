@@ -1,42 +1,99 @@
 <!-- Navbar -->
-<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+<nav class="navbar navbar-inverse navbar-expand-lg bg-dark navbar-color-on-scroll fixed-top " color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
- <img src="/images/Tow-W.png" style="width: 33%">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+ <a href="/"><img src="/images/Tow-W.png" style="width: 33%">
+ </a>       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only"></span>
           <span class="navbar-toggler-icon"></span>
           <span class="navbar-toggler-icon"></span>
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
+        
       <div class="collapse navbar-collapse">
 
         <ul class="navbar-nav ml-auto">
+
+      <% if (!user) { %>
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              
               <i class="material-icons"></i> Accede
             </a>
             <div class="dropdown-menu dropdown-with-icons">
-              <a href="/" class="dropdown-item">
+              <a href="/signin" class="dropdown-item">
                 <i class="material-icons">layers</i>Ingresar
               </a>
-              <a href="/" class="dropdown-item">
+              <a href="/signup" class="dropdown-item">
                 <i class="material-icons">content_paste</i> Registarse
               </a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-              <i class="material-icons">cloud_download</i>
-            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" target="_blank">
-              <i class="material-icons">unarchive</i> 
-            </a>
+            <a href="/signin" class="nav-link">Ingresar
+              </a>
           </li>
+          <li class="nav-item">
+            
+              <a href="/signup" class="nav-link">Registarse
+              </a>
+
+          </li>
+           <% } else { %>
+           <li class="nav-link">
+            <a href="/profile" class=""><%= user.name %> 
+              </a>
+
+            <a href="/profile" class=""><%= user.lastname %> 
+              </a>
+          </li>
+
+
+          <li class="nav-item">
+            
+              <a href="/muro" class="nav-link">Muro
+              </a>
+
+          </li>
+
+          <li class="nav-item">
+            
+              <a href="/logout" class="nav-link">Salir
+              </a>
+
+          </li>
+  <% } %>
+
+
         </ul>
       </div>
     </div>
   </nav>
+
+
+
+
+
+  <%if (signinMessage.length > 0) {%>
+       <div class="text-center alert alert-danger">
+<div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">error</i>
+          </div>
+          <b>Alerta:</b>
+          <%= signinMessage %>
+        </div></div>
+       <% } %>
+       
+       <%if (signupMessage.length > 0) {%>
+       <div class="text-center alert alert-danger">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">error</i>
+          </div>
+          <b>Alerta:</b>
+          <%= signupMessage %>
+        </div></div>
+       <% } %>

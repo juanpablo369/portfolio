@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('fragmentos/head'); %> 
+  <body class="sidebar-collapse" style="background-color: black">
+  <%- include('fragmentos/navbar'); %> 
+
+
+ <div style="background-image: url('./images/bg2.jpg');" class="card col-md-6 mx-auto">
+
+<div class="text-center text-white">
+	<h3 class="text-center text-white">Registro</h3>
+ 	<h5>Ya tienes una cuenta? <a href="/signin" class="h5 text-primary">Accede</a>
+ 	</div>
+
+
+  <form action="/signup"  class="col-md-10 mx-auto card text-center" method="POST">
+  	Nombres<br><input class="form-control col-md-10 mx-auto text-center" type="text" name="name" placeholder="Ingresa tu nombre"><br>
+  	Apellidos<br><input class="form-control col-md-10 mx-auto text-center" type="text" name="lastname" placeholder="Ingresa tu apellido"><br>
+  	Correo Electrónico<br><input class="form-control col-md-10 mx-auto text-center" type="email" name="email" placeholder="Igresar Email"><br>
+  	Contraseña<br><input  class="form-control col-md-10 mx-auto text-center" type="password" name="password" placeholder="Igresa una contraseña"><br>  
+
+  <button type="submit" class="col-md-10 mx-auto btn btn-success">Registrarse</button></form>
+
+
+ </div>
+<script src="./assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+</body>
+</html>

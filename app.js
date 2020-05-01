@@ -2,45 +2,30 @@ require("dotenv").config();
 
 var createError = require('http-errors');
 const express = require('express');
+const session= require('express-session');
+const flash = require('connect-flash');
 const bodyParser = require("body-parser");
 const webpush = require("web-push");
 const morgan = require("morgan");
-
+const passport = require("passport");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var mongoose = require("mongoose");
 
 
 var app = express();
-
+app.user
+require('./passport/local-auth');
 
 // database//
 const  database  = {
-    URI: 'mongodb+srv://thordevman:uGrRyuEp8,g$4jK@cluster0-e1gsp.mongodb.net/test?retryWrites=true&w=majority'
+    URI: 'mongodb+srv://thordevman:uGrRyuEp8,g$4jK@cluster0-e1gsp.mongodb.net/towerzart?retryWrites=true&w=majority'
 }
   
-mongoose.connect(database.URI, {
-  useNewUrlParser: true    
+mongoose.connect(database.URI, {useUnifiedTopology: true,useNewUrlParser: true    
 })
   .then(db => console.log('base de datos conectada'))
   .catch(err => console.log(err));
-
-
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-var indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-
-
 //////////MIDLEWARES
 //Web-Push
 const publicVapidKey =
@@ -52,6 +37,42 @@ webpush.setVapidDetails(
   publicVapidKey,
   privateVapidKey
 );
+
+
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(session({
+    secret: 'towerzart-session',
+    resave: false,
+    saveUnitialized: false
+}));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  app.locals.signinMessage = req.flash('signinMessage');
+  app.locals.signupMessage = req.flash('signupMessage');
+  app.locals.user = req.user;
+  console.log(app.locals)
+  next();
+});
+
+
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+var indexRouter = require('./routes/index');
+app.use('/', indexRouter);
+
+
 
 // Subscribe Route
 app.post("/subscribe", (req, res) => {
