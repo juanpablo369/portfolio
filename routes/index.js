@@ -30,7 +30,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 router.get('/signin', (req, res, next) => {
    if(req.isAuthenticated()) {
-    res.render('index',{title:'TowerzArt'});
+    res.render('index',{title:'Login - PANGEE'});
    }else{
   res.render('signin',{title:'Accede - TowerzArt'});
    }
