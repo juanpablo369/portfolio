@@ -54,14 +54,6 @@ app.use(session({
 }));
 app.use(flash());
 
-
-
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-var indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -72,6 +64,14 @@ app.use((req, res, next) => {
   console.log(app.locals)
   next();
 });
+
+
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+var indexRouter = require('./routes/index');
+app.use('/', indexRouter);
+
 
 
 // Subscribe Route

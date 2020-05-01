@@ -76,24 +76,25 @@
 
 
 
-  <%if (signinMessage.length > 0) {%>
+  <%if (signinMessage.length) {%>
        <div class="text-center alert alert-danger">
 <div class="container">
           <div class="alert-icon">
             <i class="material-icons">error</i>
           </div>
-          <b>Alerta:</b>
+          <a>Error:</a>
           <%= signinMessage %>
         </div></div>
        <% } %>
        
-       <%if (signupMessage.length > 0) {%>
+       <%if (signupMessage.length) {%>
        <div class="text-center alert alert-danger">
         <div class="container">
           <div class="alert-icon">
             <i class="material-icons">error</i>
           </div>
-          <b>Alerta:</b>
+
+          <a>Error:</a>
           <%= signupMessage %>
         </div></div>
        <% } %>
