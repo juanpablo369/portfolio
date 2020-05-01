@@ -20,7 +20,6 @@ passport.use('local-signup', new LocalStrategy({
   passReqToCallback: true
 }, async (req, email,  password, done) => {
   const user = await User.findOne({'email': email})
-  console.log(user)
   if(user) {
     return done(null, false, req.flash('signupMessage', 'El correo ya está resgistrado.'));
   } else  {
