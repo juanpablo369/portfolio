@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+<nav class="navbar navbar-inverse navbar-expand-lg bg-dark navbar-color-on-scroll fixed-top " color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
  <a href="/"><img src="/images/Tow-W.png" style="width: 33%">
@@ -10,19 +10,20 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
+        
       <div class="collapse navbar-collapse">
 
         <ul class="navbar-nav ml-auto">
 
+      <% if (!user) { %>
           <li class="dropdown nav-item">
-
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
               
               <i class="material-icons"></i> Accede
             </a>
             <div class="dropdown-menu dropdown-with-icons">
-              <a href="/signin" class="dropdown-item">
-                <i class="material-icons">layers</i>Ingresar
+              <a href="/signin" class="dropdown-item ">
+                <i class="material-icons ">layers</i>Ingresar
               </a>
               <a href="/signup" class="dropdown-item">
                 <i class="material-icons">content_paste</i> Registarse
@@ -38,8 +39,62 @@
             
               <a href="/signup" class="nav-link">Registarse
               </a>
+
           </li>
+           <% } else { %>
+           <li class="nav-item">
+            <a href="/profile" class=""><i class="material-icons">account_circle</i><%= user.name %> 
+              </a>
+
+            <a href="/profile" class=""><%= user.lastname %> 
+              </a>
+          </li>
+
+
+          <li class="nav-item">
+            
+              <a href="/muro" class="nav-link">Muro
+              </a>
+
+          </li>
+
+          <li class="nav-item">
+            
+              <a href="/logout" class="nav-link text-danger">Salir
+              </a>
+
+          </li>
+  <% } %>
+
+
         </ul>
       </div>
     </div>
   </nav>
+
+
+
+
+
+  <%if (signinMessage.length) {%>
+       <div class="text-center alert alert-danger">
+<div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">error</i>
+          </div>
+          <a>Error:</a>
+          <%= signinMessage %>
+        </div></div>
+       <% } %>
+       
+       <%if (signupMessage.length) {%>
+       <div class="text-center alert alert-danger">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">error</i>
+          </div>
+
+          <a>Error:</a>
+          <%= signupMessage %>
+        </div></div>
+       <% } %>
